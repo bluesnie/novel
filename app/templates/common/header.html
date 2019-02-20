@@ -1,0 +1,36 @@
+<header>
+    <div class="container">
+        <div id="logo">
+            <a href="/"><img src="{{ url_for('static',filename='images/logo.jpg') }}" alt="非凡小说"><h1>非凡小说</h1></a>
+        </div>
+        <div id="search">
+            <form action="/search" method="post">
+                <input type="text" name="search" placeholder="搜索其实很简单">{{ form.submit(value='搜索') }}
+{#                <button type="submit">搜索</button>#}
+            </form>
+        </div>
+        <div id="login">
+            <form action="/login" name="" method="post">
+{#                <input type="text" name="username" placeholder="用户名">#}
+{#                <input type="password" name="password" placeholder="密码"><button type="submit">登录</button>#}
+                {{ form.username(placeholder="用户名") }}
+                {{ form.password(placeholder="密码") }}{{ form.submit() }}
+            </form>
+        </div>
+        <div id="forget_register">
+            <a href="#">忘记密码</a>
+            <br>
+            <a href="/register">用户注册</a>
+        </div>
+    </div>
+    <div id="nav">
+        <nav class="container">
+            <ul>
+                <li class="on"><a href="/">首页</a></li><li><a href="/search?q=玄幻仙侠小说列表">玄幻</a></li><li><a href="/search?q=都市异能列表">都市</a></li><li><a href="/search?q=历史军事列表">历史军事</a></li><li><a href="/search?q=无限科幻列表">科幻</a></li><li><a href="/search?q=恐怖悬疑列表">悬疑</a></li><li><a href="/search?q=竞技游戏列表">游戏</a></li><li><a href="/search?q=穿越小说列表">女生穿越</a></li><li><a href="/search?q=现代言情小说列表">现言</a></li><li><a href="/search?q=古代言情小说列表">古言</a></li><li><a href="/search?q=豪门总裁小说列表">豪门</a></li><li><a href="/search?q=青春校园小说列表">青春</a></li><li><a href="/search?q=其他类别列表">其他</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+

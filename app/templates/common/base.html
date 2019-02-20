@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非凡小说</title>
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="header_wrapper">
+    {% if user %}
+        {% include 'common/header_logined.html' %}
+    {% else %}
+        {% include 'common/header.html' %}
+    {% endif %}
+</div>
+<div id="body_wrapper" class="container">
+    <article>
+        <header class="title_tg">
+            <h1>最新章节列表</h1>
+        </header>
+        <section id="novel_list">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </article>
+    <aside>
+        <section id="fav_list">
+            <header class="title_tg">
+                <h1>点击排行榜</h1>
+            </header>
+            <section id="fav_list">
+                {% block fav_li %}
+                {% endblock %}
+            </section>
+        </section>
+        <section id="new_list">
+            <header class="title_tg">
+                <h1>最新小说列表</h1>
+            </header>
+            <section id="new_list">
+                {% block new_li %}
+                {% endblock %}
+            </section>
+        </section>
+    </aside>
+</div>
+<div id="footer_wrapper">
+    <footer>
+        {% include 'common/footer.html' %}
+    </footer>
+</div>
+</body>
+</html>

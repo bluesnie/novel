@@ -1,0 +1,30 @@
+{% extends "common/base.html" %}
+{% block content %}
+    <table>
+        {% if novels %}
+            {% for novel in novels %}
+                <tr>
+                    <td><a href="/search?q={{ novel.title }}">{{ novel.title }}</a></td>
+                    <td><a href="/read/{{ novel.id }}">{{ novel.art_title }}</a></td>
+                    <td>{{ novel.auth }}</td>
+                </tr>
+            {% endfor %}
+        {% elif message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </table>
+{% endblock %}
+{% block fav_li %}
+    <ul>
+        {% for novel in novels[20:10:-1] %}
+            <li><a href="/search?q={{ novel.title }}">{{ novel.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+{% block new_li %}
+    <ul>
+        {% for novel in novels[:9] %}
+            <li><a href="/search?q={{ novel.title }}">{{ novel.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

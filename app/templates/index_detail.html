@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>非凡小说</title>
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="header_wrapper">
+    {% if user %}
+        {% include 'common/header_logined.html' %}
+    {% else %}
+        {% include 'common/header.html' %}
+    {% endif %}
+</div>
+<div id="body_wrapper" class="container">
+    <article id="index_detail">
+        <header class="title_tg">
+            <nav>
+                <ul>
+                    {% if novels %}
+                        当前位置：<li><a href="/">小说</a></li> >
+                        <li><a href="/search?q={{ novels[0].novel_type }}">  {{ novels[0].novel_type }}</a></li> >
+                        <li>{{ novels[0].title }}</li>章节列表
+                    {% elif novels_type %}
+                        当前位置：<li><a href="/">小说</a></li> >
+                        <li>{{ novels_type[0].novel_type }}</li>
+                    {% elif text %}
+                        当前位置：<li><a href="/">小说</a></li> >
+                        <li><a href="/search?q={{ text.novel_type }}"> {{ text.novel_type }}</a></li> >
+                        <li><a href="/search?q={{ text.title }}"> {{ text.title }}</a></li>>
+                        <li>{{ text.art_title }}</li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <hgroup>
+                {% if novels %}
+                    <h1>{{ novels[0].title }}</h1>
+                    <h3>章节目录</h3>
+                {% elif novels_type %}
+                    <h1>{{ novels_type[0].novel_type }}</h1>
+                {% elif text %}
+                    <h1>{{ text.art_title }}</h1>
+                {% endif %}
+            </hgroup>
+        </header>
+        <section id="art_list">
+            {% if novels %}
+                <dl>
+                    {% for novel in novels %}
+                    <dd><a href="/read/{{ novel.id }}">{{ novel.art_title }}</a></dd>
+                    {% endfor %}
+                </dl>
+            {% elif novels_type %}
+                    <dl>
+                        {% for type in novels_type %}
+                        <dd><a href="/search?q={{ type.title }}">{{ type.title }}</a></dd>
+                        {% endfor %}
+                    </dl>
+            {% elif text %}
+                {% for item in text.text.split('\xa0\xa0\xa0\xa0') %}
+                    <p>{{ item }}</p>
+                {% endfor %}
+            {% elif message %}
+                    <p id="not_found">{{ message }}</p>
+            {% endif %}
+        </section>
+    </article>
+</div>
+<div id="footer_wrapper">
+    <footer>
+        {% include 'common/footer.html' %}
+    </footer>
+</div>
+</body>
+</html>
